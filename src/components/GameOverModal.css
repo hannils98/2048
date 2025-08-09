@@ -1,0 +1,27 @@
+#gameOverModal {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.modal-body, .modal-content {
+  background-color: rgb(226, 203, 166);
+  border-radius: 10px;
+}
+
+.modal-content {
+  border: 6px solid  rgb(69, 71, 73);
+}
+
+.modal-title {
+  font-size: 25px !important; 
+  padding: 20px;
+  font-family: Futura, Trebuchet MS, Arial, sans-serif;
+  font-weight: bold;
+  color:rgb(69, 71, 73);
+}
+
+#close-btn {
+  position: relative;
+  float: right;
+  background-color: rgb(226, 203, 166);
+}
