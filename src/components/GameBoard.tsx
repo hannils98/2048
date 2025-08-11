@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react';
 import './Game.css';
-import { shiftGrid, resetGrid } from '../logic/gridHandler';
+import { shiftGrid } from '../logic/gridHandler';
 
 const KEYS_TO_HANDLE = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"];
 
 function GameBoard({ grid, setGrid }: {
-  grid: string[],
+  grid: string[], 
   setGrid: React.Dispatch<React.SetStateAction<string[]>>
 }) {
-
-  // set starting grid
-  useEffect(() => {
-    setGrid(prevGrid => {
-          const newGrid = resetGrid();
-          return newGrid;
-        });
-  }, [setGrid]);
 
   // handle arrow keys
   useEffect(() => {
@@ -29,8 +21,8 @@ function GameBoard({ grid, setGrid }: {
       } 
     };
 
-  window.addEventListener("keydown", handleKeyDown);
-  return () => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [setGrid]);

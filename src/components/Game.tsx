@@ -7,8 +7,8 @@ import SideBar from './SideBar';
 import { resetGrid } from '../logic/gridHandler';
 
 function Game() {
-  const [grid, setGrid] = useState(Array(16).fill(""));
-  let [gameOver, setGameOver] = useState(false);
+  const [grid, setGrid] = useState(() => resetGrid());
+  const [gameOver, setGameOver] = useState(false);
 
   function resetGame() {
     setGrid(prevGrid => {

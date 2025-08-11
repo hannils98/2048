@@ -1,8 +1,3 @@
-#gameOverModal {
-  grid-column: 1;
-  grid-row: 2;
-}
-
 .modal-body, .modal-content {
   background-color: rgb(226, 203, 166);
   border-radius: 10px;
@@ -20,8 +15,24 @@
   color:rgb(69, 71, 73);
 }
 
-#close-btn {
+.modal-btn {
+  background-color: rgb(69, 71, 73);
+  color:rgb(226, 203, 166);
+  margin-bottom: 20px;
+}
+
+.modal-btn:hover {
+  background-color: rgb(109, 106, 104);
+  color:rgb(226, 203, 166);
+}
+
+.btn-close {
   position: relative;
   float: right;
   background-color: rgb(226, 203, 166);
+}
+
+.modal-footer{
+  justify-content: center;
+  border: 0px;
 }

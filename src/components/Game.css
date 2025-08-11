@@ -14,18 +14,24 @@ html, body, #root {
   place-items: center;
 }
 
+
 .btn {
-  background-color: rgb(69, 71, 73);
-  color:rgb(226, 203, 166);
-  font-size: 20px !important; 
-  margin-bottom: 20px;
+  background-color: rgb(104, 102, 99);
+  color: rgb(235, 229, 220);
+  width: 150px;
+  font-size: 20px; 
   padding: 10px;
 }
 
-.btn:hover {
-  background-color: rgb(109, 106, 104);
-  color:rgb(226, 203, 166);
+.btn:hover{
+  background-color: rgb(142, 139, 134) ;
+  color: rgb(235, 229, 220);
 }
+
+p {
+    color:rgb(69, 71, 73);;
+}
+
 
 
 /* SIDEBAR */
@@ -34,23 +40,17 @@ html, body, #root {
   grid-column: 3;
   grid-row:1;
   display: flex;
-  align-items: center;
-  justify-content: start; 
+  flex-direction: column;
+  align-items: start;
+  justify-content: center; 
   height: 100%;
   width: 100%;
 }
 
-#reset-btn {
-  background-color: rgb(104, 102, 99);
-  color: rgb(226, 203, 166);
-  position: relative !important;
-  float: right !important;
-  margin-left: 15px;
+.sidebar-btn {
+  margin: 15px;
 }
 
-#reset-btn:hover {
-  background-color: rgb(142, 139, 134);
-}
 
 /* GAME BOARD */
 
@@ -100,6 +100,42 @@ html, body, #root {
   background-color: rgb(226, 203, 166);
 }
 
+.cell8 {
+  background-color: rgb(225, 153, 122);
+}
+
+.cell16 {
+  background-color: rgb(244, 159, 86);
+}
+
+.cell32 {
+  background-color: rgb(237, 187, 107);
+}
+
+.cell64 {
+  background-color: rgb(166, 186, 100);
+}
+
+.cell128 {
+  background-color: rgb(207, 201, 110);
+}
+
+.cell256 {
+  background-color: rgb(186, 142, 100);
+}
+
+.cell512 {
+  background-color: rgb(215, 191, 69);
+}
+
+.cell1024 {
+  background-color: rgb(219, 115, 95);
+}
+
+.cell2048 {
+  background-color: rgb(119, 140, 186);
+}
+
 
 /* MOBILE */
 
@@ -113,13 +149,8 @@ html, body, #root {
 .sidebar {
   grid-column: 1;
   grid-row: 1;
-  justify-content: center;
   align-items: end;
-}
-
-#reset-btn {
-  margin-right:0px;
-  margin-left:0px;
+  flex-direction: row;
 }
 
 .gameboard-container{
