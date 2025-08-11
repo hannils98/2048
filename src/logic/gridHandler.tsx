@@ -1,4 +1,9 @@
-
+/**
+ * Shifts the tiles on the game grid depending on which arrow key has been pressed. 
+ * Also adds a new tile if the shift caused the board to be changed
+ * @param grid - The current grid array.
+ * @returns The updated grid array.
+ */
 export function shiftGrid(grid: string[], key: string): string[] {
 
     let newGrid: string[] = [];
@@ -9,8 +14,9 @@ export function shiftGrid(grid: string[], key: string): string[] {
         newGrid = handleColumns(grid, key);
     }
 
+    // check so we only add tile if something has changed
     if (JSON.stringify(grid) !== JSON.stringify(newGrid)) {
-        newGrid = addTile(newGrid);
+        addTile(newGrid);
     }
 
     return newGrid;
@@ -31,7 +37,7 @@ function handleRows(grid: string[], key: string): string[] {
     const updatedRows = shift(rows, key);
 
     // turn the updated rows back to grid array
-    const newGrid = updatedRows.flat();
+    const newGrid: string[] = updatedRows.flat();
 
     return newGrid
 }
@@ -61,24 +67,45 @@ function handleColumns(grid: string[], key: string): string[] {
     return newGrid
 }
 
-function shift(arrays: string[][], key: string): string[][] {
-    const updatedArrays = []
+function shift(grid: string[][], key: string): string[][] {
+    const updatedGrid: string[][] = []
     
-    for ( const a of arrays ) {
-        const updatedArray = a.filter(tile => tile !== "");
+    for ( const row of grid ) {
+        const shiftedRow = row.filter(tile => tile !== "");
+        const newRow = mergeTiles(shiftedRow);
 
-        while (updatedArray.length < 4) {
+        while (newRow.length < 4) {
             if ( key === 'ArrowLeft' || key === 'ArrowUp' ){
-                updatedArray.push("");
+                newRow.push("");
             } else{
-                updatedArray.unshift("");
+                newRow.unshift("");
             }   
         }
-        updatedArrays.push(updatedArray);
+        updatedGrid.push(newRow);
 
     }
 
-    return updatedArrays;
+    return updatedGrid;
+}
+
+
+function mergeTiles(row: string[]): string[] {
+    const newRow: string[] = [];
+    let newTile = "";
+    let lastTile = "";
+
+    for (const tile of row) {
+        if (tile === lastTile && tile !== ""){
+            newTile = String(Number(tile)*2);
+            newRow.pop();
+            lastTile = "";
+        }else{
+            newTile = tile;
+            lastTile = tile;
+        }
+        newRow.push(newTile);
+    }
+    return newRow;
 }
 
 
@@ -87,7 +114,7 @@ function addTile(newGrid:string[]): string[] {
     const emptyTiles = [];
     const tileValues = ["2", "4"];
 
-    for (const i in newGrid) {
+    for (let i = 0; i < newGrid.length; i++) {
         if (newGrid[i] === "") {
             emptyTiles.push(i);
         }
@@ -96,18 +123,21 @@ function addTile(newGrid:string[]): string[] {
     const tilePlace = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
     const tileValue = tileValues[Math.floor(Math.random() * tileValues.length)];
 
-    newGrid.splice(parseInt(tilePlace), 1, tileValue);
+    newGrid.splice(Number(tilePlace), 1, tileValue);
 
     return newGrid;
 
 }
 
+/**
+ * Creates a new grid that only contains two tiles. 
+ * @returns The new grid array.
+ */
+export function resetGrid(): string[] {
+    const newGrid = new Array(16).fill("")
 
-export function resetGrid() {
-    let newGrid = Array(16).fill("")
-
-    newGrid = addTile(newGrid);
-    newGrid = addTile(newGrid);
+    addTile(newGrid);
+    addTile(newGrid);
 
     return newGrid
 }
